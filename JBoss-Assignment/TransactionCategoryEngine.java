@@ -144,10 +144,17 @@ public class TransactionCategoryEngine {
                 double transportTotalAmount = 0;
                 double diningTotalAmount = 0;
 
+                // --- FIXED: Create 'enter' variable outside try block ---
+                int enter = 0; 
+                try{
                 Scanner input = new Scanner(System.in);
                 System.out.println("Enter 1: for Groceries 2: for Transport  3: for Dining ");
-                int enter = input.nextInt();
 
+                enter = input.nextInt();
+                } catch (InputMismatchException e) {
+                        System.out.println("\n[ERROR] Invalid input type! Please enter numbers only (1, 2, or 3).");
+                              // Exits the main method gracefully instead of crashing
+                }
                 // Display total transaction base on category
                 for (Transaction transact : transactions) {
 
@@ -185,7 +192,7 @@ public class TransactionCategoryEngine {
 
                 System.out.println("------------------------------------------------------------------------\n");
                 System.out.println("Total Extenses spend on Dinig: #" + diningTotalAmount);
-
+                
         }
 }
 

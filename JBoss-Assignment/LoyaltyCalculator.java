@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -47,7 +48,8 @@ class Customer extends Multiplier{
 
     Multiplier multiplier = new Multiplier();
     double tier1EarningRatio = multiplier.tier1();
-
+    
+    try{
     System.out.println("Enter your Transaction Amount: ");
     double transaction = input.nextDouble();
     if (transaction > accountBalance){
@@ -82,9 +84,16 @@ class Customer extends Multiplier{
         return accruePoint;
     }
 
+}catch(InputMismatchException e) {
+    System.out.println("Invalid Input!");
+    return  1;
+} finally{
+    input.close();
+}
+
     }
 
-    public int customer2(){
+    public  int customer2(){
     Scanner input = new Scanner(System.in);
     String name = "Adigun taiwo";
     double accountBalance = 400000.00;
@@ -93,9 +102,12 @@ class Customer extends Multiplier{
 
     Multiplier multiplier = new Multiplier();
     double tier2EarningRatio = multiplier.tier2();
-
+    
+    try{
     System.out.println("Enter your Transaction Amount: ");
     double transaction = input.nextDouble();
+
+  
     if (transaction > accountBalance){
         System.out.println("Insufficient Balance");
         return 0;
@@ -113,6 +125,16 @@ class Customer extends Multiplier{
         System.out.println("Thanks for making a transaction with us. Your new balance is: " + newBalance);
         System.out.println("You earned " + accruePoint + " points!");
         return accruePoint;
+    }
+
+      }catch(InputMismatchException e){
+        System.out.println("Invalid input!");
+        return 1;
+        
+    }
+
+    finally{
+        input.close();
     }
 
     // redeem point 
